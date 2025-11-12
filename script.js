@@ -1,6 +1,6 @@
 // =======================================================
 // JAVASCRIPT PURO PARA ANIMACIONES DE VISIBILIDAD (FADE-IN)
-// Y FUNCIONALIDAD DEL SLIDER
+// Y FUNCIONALIDAD DEL SLIDER .....
 // =======================================================
 
 document.addEventListener('DOMContentLoaded', () => {

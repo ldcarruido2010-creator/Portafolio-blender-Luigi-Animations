@@ -1,0 +1,355 @@
+/* VARIABLES GLOBALES */
+:root {
+    --color-primary: #000000; /* Negro base */
+    --color-secondary: #ffffff; /* Blanco */
+    --color-accent: #b8860b; /* Dorado suave (DarkGoldenRod) */
+    --color-text-light: #f0f0f0; /* Texto claro */
+    --color-text-dark: #333333; /* Texto oscuro para secciones claras */
+    
+    --font-serif: 'Playfair Display', serif; /* Título elegante */
+    --font-sans: 'Montserrat', sans-serif; /* Texto principal moderno */
+    
+    --transition-duration: 0.5s;
+    --spacing: 40px;
+}
+
+/* RESET Y ESTILOS BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    overflow-x: hidden; /* Previene scroll horizontal */
+}
+
+a {
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: color var(--transition-duration) ease-in-out;
+}
+
+a:hover {
+    color: var(--color-secondary);
+}
+
+/* SECCIONES Y ESTRUCTURA GENERAL */
+.section {
+    padding: var(--spacing) 5%;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    background-color: var(--color-primary);
+}
+
+.section-title {
+    font-family: var(--font-serif);
+    font-size: 2.5em;
+    color: var(--color-accent);
+    margin-bottom: 30px;
+    font-weight: 400;
+}
+
+/* HERO SECTION (INICIO) */
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative; /* Para posicionar el video y los slides */
+    overflow: hidden; /* Asegura que el video no se desborde */
+}
+
+#hero-video-bg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    background-size: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Oscurece el video */
+    z-index: 2;
+}
+
+.hero-slider-container {
+    position: relative; /* Contenedor para los slides */
+    width: 100%;
+    height: 100%;
+    display: flex; /* Para centrar el contenido de cada slide */
+    justify-content: center;
+    align-items: center;
+    z-index: 3; /* Sobre el video y el overlay */
+}
+
+.hero-slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+}
+
+.hero-slide.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative; /* Asegura que el contenido esté sobre el slide */
+    width: 90%; /* Ajuste para móviles */
+}
+
+.hero h1 {
+    font-family: var(--font-serif);
+    font-size: 4.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.hero h2 {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 1.8em;
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    color: #aaa;
+    margin-bottom: 40px;
+}
+
+/* Navegación del Slider (Puntos) */
+.slider-nav {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid rgba(184, 134, 11, 0.5);
+}
+
+.dot.active, .dot:hover {
+    background-color: var(--color-accent);
+}
+
+/* BOTONES ESTILO GENERAL */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    background-color: transparent;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all var(--transition-duration) ease-in-out;
+}
+
+.btn:hover {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(184, 134, 11, 0.3);
+}
+
+/* SOBRE MÍ */
+.sobre-mi .content {
+    max-width: 700px;
+    font-size: 1.1em;
+    color: #ccc;
+}
+
+/* PROYECTOS / PORTAFOLIO */
+.proyectos {
+    background-color: #0c0c0c; /* Un negro ligeramente más claro para contraste sutil */
+}
+
+.proyectos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.card {
+    background-color: var(--color-primary);
+    border: 1px solid rgba(184, 134, 11, 0.1);
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 15px rgba(184, 134, 11, 0.5);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    aspect-ratio: 16 / 9; /* Mantiene la proporción */
+    object-fit: cover;
+}
+
+.card h4 {
+    font-family: var(--font-serif);
+    font-size: 1.5em;
+    color: var(--color-accent);
+    margin-bottom: 5px;
+}
+
+.card p {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.card-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+/* CONTACTO */
+.contacto {
+    background-color: var(--color-primary);
+}
+
+.contacto p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+}
+
+.contacto-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-btn {
+    min-width: 180px;
+}
+
+.secondary-btn {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+/* FOOTER */
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 0.8em;
+    background-color: #0c0c0c;
+    border-top: 1px solid rgba(184, 134, 11, 0.1);
+    color: #777;
+}
+
+/* ANIMACIONES (JS y CSS) */
+
+/* Fade-In General (para elementos dentro de slides si se reinicia la animación) */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+/* Utilidad para retrasos */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+
+/* Clase que se añade con JavaScript */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* MEDIA QUERIES para Responsividad */
+@media (max-width: 768px) {
+    :root {
+        --spacing: 30px;
+    }
+
+    .hero h1 {
+        font-size: 3.5em;
+    }
+
+    .hero h2 {
+        font-size: 1.4em;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .proyectos-grid {
+        gap: 20px;
+    }
+    
+    .contacto-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Video en móviles */
+    #hero-video-bg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Asegura que el video cubra el área */
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2.8em;
+    }
+}

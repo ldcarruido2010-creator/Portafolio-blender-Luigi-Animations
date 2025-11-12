@@ -100,3 +100,4 @@ document.addEventListener('DOMContentLoaded', () => {
     heroSliderContainer.addEventListener('mouseenter', stopSlider);
     heroSliderContainer.addEventListener('mouseleave', startSlider);
 });
+
